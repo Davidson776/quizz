@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabarito do Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gabarito do Quiz</h1>
+        <div id="resultado"></div>
+        <button onclick="voltar()">Voltar ao Quiz</button>
+    </div>
+    <script>
+        function mostrarGabarito() {
+            const gabarito = JSON.parse(localStorage.getItem('gabarito'));
+            const resultadoDiv = document.getElementById('resultado');
+            let resultadoHTML = '';
+
+            if (gabarito) {
+                for (let i = 1; i <= 7; i++) {
+                    resultadoHTML += `<p>Questão ${i}: ${gabarito[`q${i}`].resposta} - ${gabarito[`q${i}`].correta ? 'Correta' : 'Incorreta'}</p>`;
+                }
+            } else {
+                resultadoHTML = '<p>Nenhuma resposta encontrada.</p>';
+            }
+
+            resultadoDiv.innerHTML = resultadoHTML;
+        }
+
+        function voltar() {
+            window.location.href = 'index.html';
+        }
+
+        mostrarGabarito();
+    </script>
+</body>
+</html>
